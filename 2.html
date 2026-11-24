@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Text Animation</title>
+</head>
+<body style="margin:0; overflow:hidden;">
+
+<script>
+var names = ["HELLO", "WELCOME", "GOOD MORNING",
+             "GOOD NIGHT", "CENTER TEXT"];
+
+var positions = [
+    ["0%","0%"],
+    ["75%","0%"],
+    ["0%","80%"],
+    ["75%","80%"],
+    ["40%","40%"]
+];
+
+var colors = ["red","blue","green","purple","orange"];
+
+for (let i = 0; i < names.length; i++) {
+    let text = document.createElement("h1");
+    let size = 50;
+    let shrinking = true;
+
+    text.innerText=names[i];
+    text.style.position="absolute";
+    text.style.left=positions[i][0];
+    text.style.top=positions[i][1];
+    text.style.color=colors[i];
+    text.style.fontSize=size + "pt";
+
+    document.body.appendChild(text);
+
+    setInterval(function(){
+        if (shrinking){
+            size -= 2;
+
+            if (size <= 10){
+                shrinking = false;
+            }
+        } else {
+            size += 2;
+
+            if (size >= 50) {
+                shrinking = true;
+            }
+        }
+        text.style.fontSize = size + "pt";
+    }, 100);
+}
+</script>
+
+</body>
+</html>
